@@ -6,3 +6,5 @@ dist-ssr
 coverage
 .env
 build
+
+.idea
