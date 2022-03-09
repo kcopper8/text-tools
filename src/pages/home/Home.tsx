@@ -16,6 +16,10 @@ function Home(): JSX.Element {
           <ListItem>
             <Link href="./nl2br">nl2br</Link>
           </ListItem>
+
+          <ListItem>
+            <Link href="./inlineStyle2ReactStyle">inlineStyle2ReactStyle</Link>
+          </ListItem>
         </UnorderedList>
       </VStack>
     </Center>
