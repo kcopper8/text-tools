@@ -1,11 +1,8 @@
-import TextToolView from '../../components/TextToolView';
-
-function custom(text: string) {
-  return text.replaceAll(/\n/g, '<br>\n');
-}
+// eslint-disable-next-line max-len
+import CustomizableTextToolView from '../../components/CustomizableTextToolView';
 
 function Custom() {
-  return <TextToolView title="Custom" textAction={custom} />;
+  return <CustomizableTextToolView title="Custom" />;
 }
 
 export default Custom;
