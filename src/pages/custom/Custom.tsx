@@ -4,8 +4,8 @@ function custom(text: string) {
   return text.replaceAll(/\n/g, '<br>\n');
 }
 
-function Nl2Br() {
-  return <TextToolView title="Nl2Br" textAction={custom} />;
+function Custom() {
+  return <TextToolView title="Custom" textAction={custom} />;
 }
 
-export default Nl2Br;
+export default Custom;

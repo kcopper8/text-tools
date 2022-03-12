@@ -7,19 +7,19 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
+import allToolList from '../../allToolList';
+
 function Home(): JSX.Element {
   return (
     <Center>
       <VStack mt="100px">
         <Heading>Text Tools</Heading>
         <UnorderedList>
-          <ListItem>
-            <Link href="./nl2br">nl2br</Link>
-          </ListItem>
-
-          <ListItem>
-            <Link href="./inlineStyle2ReactStyle">inlineStyle2ReactStyle</Link>
-          </ListItem>
+          {allToolList.map(({ route, title }) => (
+            <ListItem>
+              <Link href={`./${route}`}>{title}</Link>
+            </ListItem>
+          ))}
         </UnorderedList>
       </VStack>
     </Center>
