@@ -8,12 +8,12 @@ import Nl2Br from './pages/nl2br/Nl2Br';
 function App(): JSX.Element {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/nl2br" element={<Nl2Br />} />
+      <Route path="/text-tools/nl2br" element={<Nl2Br />} />
       <Route
-        path="/inlineStyle2ReactStyle"
+        path="/text-tools/inlineStyle2ReactStyle"
         element={<InlineStyle2ReactStyle />}
       />
+      <Route path="*" element={<Home />} />
     </Routes>
   );
 }
