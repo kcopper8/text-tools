@@ -1,9 +1,13 @@
 import { ChangeEventHandler, useState } from 'react';
 
+import { ArrowDownIcon } from '@chakra-ui/icons';
 import {
-  Button,
   Center,
   Container,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
   Heading,
   Textarea,
   VStack,
@@ -16,26 +20,56 @@ interface TextToolViewProps {
 
 function TextToolView({ title, textAction }: TextToolViewProps) {
   const [text, setText] = useState('');
-  const handleChangeText: ChangeEventHandler<HTMLTextAreaElement> = (event) =>
+  const [afterText, setAfterText] = useState(text);
+  const [error, setError] = useState<Error | null>(null);
+  const handleChangeText: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
     setText(event.target.value);
+    try {
+      setError(null);
+      setAfterText(textAction(text));
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e);
+      } else {
+        setError(new Error(String(e)));
+      }
+    }
+  };
 
-  const handleRun = () => setText(textAction(text));
   return (
     <Center pos="fixed" w="100%" h="100%">
       <VStack maxW="100%" width="100%">
         <Heading>{title}</Heading>
         <Container maxW="90%">
-          <Textarea
-            placeholder="Enter Text"
-            minH="30ex"
-            resize="vertical"
-            value={text}
-            onChange={handleChangeText}
-          />
+          <FormControl>
+            <FormLabel htmlFor="beforeText">Before</FormLabel>
+            <FormHelperText>Enter the text to change.</FormHelperText>
+
+            <Textarea
+              id="beforeText"
+              placeholder="Enter Text"
+              minH="30ex"
+              resize="vertical"
+              value={text}
+              onChange={handleChangeText}
+            />
+          </FormControl>
         </Container>
-        <Button colorScheme="blue" onClick={handleRun}>
-          Button
-        </Button>
+        <ArrowDownIcon />
+        <Container maxW="90%">
+          <FormControl isInvalid={!!error}>
+            <FormLabel htmlFor="beforeText">After</FormLabel>
+            {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+
+            <Textarea
+              id="afterText"
+              minH="30ex"
+              resize="vertical"
+              value={afterText}
+              readOnly
+            />
+          </FormControl>
+        </Container>
       </VStack>
     </Center>
   );
