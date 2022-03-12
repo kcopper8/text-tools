@@ -18,7 +18,10 @@
     "test": "jest --colors --passWithNoTests",
     "posttest": "npx http-server coverage/lcov-report",
     "test:watch": "yarn test --collectCoverage=false --watch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy": "yarn clean:deploy && yarn build && gh-pages -d dist",
+    "deploy:only": "gh-pages -d dist",
+    "clean:deploy": "gh-pages-clean"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
@@ -52,6 +55,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "gh-pages": "^3.2.3",
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
