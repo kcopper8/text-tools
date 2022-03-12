@@ -1,6 +1,5 @@
-# ReactTS 17 with Chakra UI and Vite
-
-This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang.org/) + [Chakra UI](https://chakra-ui.com) boilerplate to be built with [Vite](https://vitejs.dev). It also includes [Husky](https://typicode.github.io/husk) and a pre-commit hook that runs `yarn format`.
+# Text Tools
+started from : https://github.com/The24thDS/vite-reactts17-chakra-jest-husky
 
 ## What's inside?
 

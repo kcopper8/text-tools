@@ -1,12 +1,11 @@
 {
-  "name": "stellaris-modding-toolbox",
-  "version": "0.0.0",
+  "name": "text-tools",
+  "version": "0.0.1",
   "author": {
-    "name": "David Sima",
-    "email": "hello@david-sima.dev",
-    "url": "https://github.com/The24thDS"
+    "name": "kcopper8",
+    "email": "kcopper8@gmail.com",
+    "url": "https://github.com/kcopper8"
   },
-  "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "vite",
