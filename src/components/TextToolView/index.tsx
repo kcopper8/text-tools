@@ -1,5 +1,3 @@
-import { ChangeEventHandler, useState } from 'react';
-
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import {
   Center,
@@ -13,28 +11,16 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
+import useTransformTool, { TransformText } from '../../pages/useTransformTool';
+
 interface TextToolViewProps {
   title: string;
-  textAction: (text: string) => string;
+  textAction: TransformText;
 }
 
 function TextToolView({ title, textAction }: TextToolViewProps) {
-  const [text, setText] = useState('');
-  const [afterText, setAfterText] = useState(text);
-  const [error, setError] = useState<Error | null>(null);
-  const handleChangeText: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
-    setText(event.target.value);
-    try {
-      setError(null);
-      setAfterText(textAction(text));
-    } catch (e) {
-      if (e instanceof Error) {
-        setError(e);
-      } else {
-        setError(new Error(String(e)));
-      }
-    }
-  };
+  const { inputText, transformedText, error, onChangeText } =
+    useTransformTool(textAction);
 
   return (
     <Center pos="fixed" w="100%" h="100%">
@@ -42,30 +28,30 @@ function TextToolView({ title, textAction }: TextToolViewProps) {
         <Heading>{title}</Heading>
         <Container maxW="90%">
           <FormControl>
-            <FormLabel htmlFor="beforeText">Before</FormLabel>
+            <FormLabel htmlFor="inputText">Input Text</FormLabel>
             <FormHelperText>Enter the text to change.</FormHelperText>
 
             <Textarea
-              id="beforeText"
+              id="inputText"
               placeholder="Enter Text"
               minH="30ex"
               resize="vertical"
-              value={text}
-              onChange={handleChangeText}
+              value={inputText}
+              onChange={onChangeText}
             />
           </FormControl>
         </Container>
         <ArrowDownIcon />
         <Container maxW="90%">
           <FormControl isInvalid={!!error}>
-            <FormLabel htmlFor="beforeText">After</FormLabel>
+            <FormLabel htmlFor="transformedText">Transformed Text</FormLabel>
             {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
 
             <Textarea
-              id="afterText"
+              id="transformedText"
               minH="30ex"
               resize="vertical"
-              value={afterText}
+              value={transformedText}
               readOnly
             />
           </FormControl>
