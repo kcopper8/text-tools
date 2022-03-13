@@ -10,7 +10,7 @@ const useTransformTool = (textAction: TransformText) => {
     setInputText(event.target.value);
     try {
       setError(null);
-      setTransformedText(textAction(inputText));
+      setTransformedText(textAction(event.target.value));
     } catch (e) {
       if (e instanceof Error) {
         setError(e);
