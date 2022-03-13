@@ -23,7 +23,8 @@
     "deploy": "yarn clean:deploy && yarn build && gh-pages -d dist",
     "deploy:only": "gh-pages -d dist",
     "clean:deploy": "gh-pages-clean",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "e2e": "start-server-and-test 'yarn dev:only' http-get://localhost:3000/text-tools/ 'cypress run'"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
